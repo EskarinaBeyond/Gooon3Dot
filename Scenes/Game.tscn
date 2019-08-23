@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Blocks/Static Block.tscn" type="PackedScene" id=2]
+
+[node name="Game" type="Spatial"]
+
+[node name="Ingame" type="Spatial" parent="."]
+
+[node name="Player" parent="Ingame" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81716, 0 )
+
+[node name="Level" type="Spatial" parent="Ingame"]
+
+[node name="Static Block" parent="Ingame/Level" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0 )
