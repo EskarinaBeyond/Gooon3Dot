@@ -7,6 +7,7 @@ roughness = 0.0
 [sub_resource type="CubeMesh" id=2]
 
 [sub_resource type="BoxShape" id=3]
+margin = 0.001
 
 [node name="Static Block" type="StaticBody"]
 

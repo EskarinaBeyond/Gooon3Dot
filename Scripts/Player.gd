@@ -54,6 +54,7 @@ func _input(event):
 	if Input.is_action_just_released("jump") and movement.y > 0:
 		
 		movement.y = 0
+	
 
 
 func _process(delta):
