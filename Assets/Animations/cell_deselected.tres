@@ -4,7 +4,7 @@
 resource_name = "cell_deselected"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("MeshInstance:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -13,5 +13,5 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0.8, 0.5, 0.8 ), Vector3( 1, 0.5, 1 ) ]
+"values": [ Vector3( 0, 0.5, 0 ), Vector3( 0, 0, 0 ) ]
 }

@@ -4,3 +4,6 @@
 
 [node name="Grid" type="Spatial"]
 script = ExtResource( 1 )
+cellsize = 1.0
+gridxsize = 2
+gridysize = 2

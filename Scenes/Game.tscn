@@ -10,9 +10,12 @@ script = ExtResource( 1 )
 [node name="Camera_Anchor" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="Camera_Anchor"]
-transform = Transform( 1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 10, 10 )
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 15 )
+current = true
 script = ExtResource( 2 )
 
 [node name="Ingame" type="Spatial" parent="."]
 
 [node name="Grid" parent="Ingame" instance=ExtResource( 3 )]
+gridxsize = 10
+gridysize = 10
