@@ -1,14 +1,12 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/Cell.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Cell.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Animations/cell_clicked.tres" type="Animation" id=2]
 [ext_resource path="res://Assets/Animations/cell_deselected.tres" type="Animation" id=3]
 [ext_resource path="res://Assets/Animations/cell_selected.tres" type="Animation" id=4]
+[ext_resource path="res://Assets/Shaders/grid_cell_shader.tres" type="Material" id=5]
 
-[sub_resource type="CubeMesh" id=3]
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.415686, 1, 0.807843, 1 )
+[sub_resource type="CubeMesh" id=1]
 
 [sub_resource type="BoxShape" id=2]
 
@@ -22,8 +20,8 @@ anims/cell_deselected = ExtResource( 3 )
 anims/cell_selected = ExtResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 5 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
