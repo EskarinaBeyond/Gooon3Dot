@@ -19,17 +19,11 @@ func _ready():
 	
 	camera.grid_mid_point = grid.grid_mid_point;
 	
-func change_player_cell(cell):
+	player.change_player_cell(get_node("Ingame/Grid/Cell").get_path());
 	
-	var target = get_node("Ingame/Grid/Cell" + str(cell));
-	var source = find_node("Player");
-	self.remove_child(source);
-	target.add_child(source);
-	#source.set_owner(target);
 
 func _process(delta):
-	player = find_node("Player");
-	print_debug(player.name);
+	pass;
 	
 	
 

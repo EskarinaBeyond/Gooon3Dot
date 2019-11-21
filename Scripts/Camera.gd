@@ -21,9 +21,15 @@ func _process(delta):
 		
 	if Input.is_action_pressed("right"):
 		camera_anchor.rotate_y(-0.015);
-		
+	
 	if Input.is_action_pressed("forward"):
+		rotate_x(0.015);
+	
+	if Input.is_action_pressed("backward"):
+		rotate_x(-0.015);
+	
+	if Input.is_action_pressed("up"):
 		camera_anchor.translate(Vector3(0, 0.03, 0));
 		
-	if Input.is_action_pressed("backward"):
+	if Input.is_action_pressed("down"):
 		camera_anchor.translate(Vector3(0, -0.03, 0));
