@@ -1,25 +1,18 @@
 extends Spatial
 
-var camera_anchor 
-var camera 
-var ingame
-var player
-var grid
-var RAY_LENGTH = 100
-var starting_cell = 2
+onready var camera = $Camera_Anchor/Camera;
+onready var ingame = $Ingame
+onready var grid = $Ingame/Grid
+onready var characters = $Characters.get_children();
+onready var selected_player = null;
+
+var selected_cell
+
+var selected_char
 
 
 func _ready():
-	camera_anchor = $Camera_Anchor;
-	camera = $Camera_Anchor/Camera;
-	ingame = $Ingame
-	grid = $Ingame/Grid
-	player = find_node("Player");
-	
-	
-	camera.grid_mid_point = grid.grid_mid_point;
-	
-	player.change_player_cell(get_node("Ingame/Grid/Cell").get_path());
+	pass;
 	
 
 func _process(delta):

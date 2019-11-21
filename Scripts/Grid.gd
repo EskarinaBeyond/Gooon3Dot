@@ -34,17 +34,4 @@ func _ready():
 	gridarray = create_2d_array(gridxsize, gridysize, null);
 	fill_grid(gridarray);
 	
-	grid_mid_point = Vector3(gridxsize *  cellsize + translation.x, translation.y, gridysize * cellsize + translation.z);
-	print_debug(grid_mid_point);
-	
-	
-	
-	
-	
-	
-	
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	grid_mid_point = (gridarray[gridxsize - 1][gridysize - 1].translation + gridarray[0][0].translation) / 2;
