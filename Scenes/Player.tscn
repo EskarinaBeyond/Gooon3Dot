@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/Player_Placeholder.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Scenes/Actions/Move_Action.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Sprites/Move_Icon.png" type="Texture" id=4]
 
 [node name="Player" type="Spatial"]
 script = ExtResource( 1 )
@@ -12,3 +14,8 @@ mesh = ExtResource( 2 )
 material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Actions" type="Spatial" parent="."]
+
+[node name="Move_Action" parent="Actions" instance=ExtResource( 3 )]
+action_icon = ExtResource( 4 )

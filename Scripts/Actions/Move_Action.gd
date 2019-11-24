@@ -1,0 +1,44 @@
+extends Spatial
+
+onready var game = find_parent("Game");
+onready var owner_char = get_parent().get_parent();
+onready var characters = game.characters;
+onready var obstacles = game.find_node("Obstacles").get_children();
+
+export(String) var action_name = "Move"
+
+export(int) var max_action_charges = 1;
+export(int) var action_range = 2;
+export(Image) var action_icon = null;
+
+var action_charges = max_action_charges;
+
+func action(cell):
+
+	if game.selected_player != null:
+		
+		if game.selected_player.cur_cell != cell and cell.in_range(action_range):
+			
+			if obstacles.size() > 0:
+				
+				for obstacle in obstacles:
+					if obstacle.cur_cell == cell:
+						return;
+						
+			owner_char.cur_cell = cell;
+			owner_char.translation = cell.translation ;
+			game.selected_player = null;
+			print_debug("got here");
+
+			for cell in game.find_node("Grid").get_children():
+				if cell.highlighted:
+					cell.lowlight();
+
+func _ready():
+	pass
+
+func _process(delta):
+	characters = game.characters;
+	obstacles = game.obstacles;
+
+

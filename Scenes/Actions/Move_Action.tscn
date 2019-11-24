@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Actions/Move_Action.gd" type="Script" id=1]
+
+[node name="Move_Action" type="Spatial"]
+script = ExtResource( 1 )

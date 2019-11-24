@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Actions/Attack_Action.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Attack_Icon.png" type="Texture" id=2]
+
+[node name="Attack_Action" type="Spatial"]
+script = ExtResource( 1 )
+action_icon = ExtResource( 2 )

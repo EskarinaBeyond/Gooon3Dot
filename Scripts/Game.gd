@@ -3,12 +3,30 @@ extends Spatial
 onready var camera = $Camera_Anchor/Camera;
 onready var ingame = $Ingame
 onready var grid = $Ingame/Grid
-onready var characters = $Characters.get_children();
+onready var characters = $Ingame/Characters.get_children();
+onready var obstacles = $Ingame/Obstacles.get_children();
 onready var selected_player = null;
+onready var selection_arrow = $Ingame/Selection_Arrow;
+onready var cell_selector = $Ingame/Cell_Selector;
+onready var ui = $UI;
+onready var action_buttons = $UI/Action_Buttons.get_children();
 
 var selected_cell
 
-var selected_char
+var moused_cell
+
+
+func select_player(player):
+	selected_player = player;
+	
+	selection_arrow.visible = true;
+	selection_arrow.translation = selected_player.translation + 3 * selected_player.entity_offset;
+	
+	for action in player.actions:
+		action_buttons[action.get_index()].find_node("Icon").texture = action.action_icon;
+		action_buttons[action.get_index()].find_node("Label").text = action.action_name;
+	
+	pass;
 
 
 func _ready():
@@ -16,7 +34,33 @@ func _ready():
 	
 
 func _process(delta):
+	
+	characters = get_node("Ingame/Characters").get_children();
+	obstacles = get_node("Ingame/Obstacles").get_children();
+	
+	if selected_player != null:
+		
+		for cell in grid.get_children():
+			if cell.in_range(selected_player.cur_action.action_range) and !cell.highlighted:
+				cell.highlight();
+				
+			if !cell.in_range(selected_player.cur_action.action_range) and cell.highlighted:
+				cell.lowlight();
+				
+	else:
+		selection_arrow.visible = false;
+		
+		for button in action_buttons:
+			button.find_node("Icon").texture = null;
+			button.find_node("Label").text = "";
 	pass;
+	
+	if moused_cell != null:
+		cell_selector.visible = true;
+		cell_selector.translation = moused_cell.translation + moused_cell.mesh.translation;
+	else:
+		cell_selector.visible = false;
+	
 	
 	
 

@@ -12,6 +12,8 @@ func _ready():
 
 func _process(delta):
 	
+	#My mess of a camera control system
+	
 	if Input.is_action_pressed("left"):
 		camera_anchor.rotate_y(0.015);
 		
@@ -31,3 +33,12 @@ func _process(delta):
 		
 	if Input.is_action_pressed("down"):
 		camera_anchor.translate(Vector3(0, -0.1, 0));
+	
+	if Input.is_action_pressed("zoom_in"):
+		if translation.z > 6:
+			translate(Vector3(0, 0, -0.1));
+	
+	if Input.is_action_pressed("zoom_out"):
+		if translation.z < 30:
+			translate(Vector3(0, 0, 0.1));
+	

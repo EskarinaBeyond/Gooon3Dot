@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Models/Selection_Arrow.gltf" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Selection_Arrow.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Models/Selection_Arror.material" type="Material" id=3]
+[ext_resource path="res://Assets/Animations/Selection_Arrow_Idle.tres" type="Animation" id=4]
+
+[node name="Selection_Arrow" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="arrow" parent="." index="0"]
+transform = Transform( -8.74228e-009, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-009, 0, 0, 0 )
+material/0 = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+anims/Selection_Arrow_Idle = ExtResource( 4 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

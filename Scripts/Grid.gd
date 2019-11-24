@@ -26,6 +26,7 @@ func fill_grid(grid):
 			grid[x][y] = preload("res://Scenes/Cell.tscn").instance()
 			grid[x][y].translate(Vector3(x * 2 * cellsize, 0, y * 2 * cellsize))
 			add_child(grid[x][y], true);
+			grid[x][y].grid_pos = Vector2(x, y);
 
 
 func _ready():
