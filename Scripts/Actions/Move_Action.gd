@@ -2,7 +2,7 @@ extends Spatial
 
 onready var game = find_parent("Game");
 onready var owner_char = get_parent().get_parent();
-onready var characters = game.characters;
+onready var characters = game.find_node("Characters").get_children();
 onready var obstacles = game.find_node("Obstacles").get_children();
 
 export(String) var action_name = "Move"
@@ -23,6 +23,10 @@ func action(cell):
 				
 				for obstacle in obstacles:
 					if obstacle.cur_cell == cell:
+						return;
+				
+				for character in characters:
+					if character.cur_cell == cell:
 						return;
 						
 			owner_char.cur_cell = cell;

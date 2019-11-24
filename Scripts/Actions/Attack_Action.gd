@@ -30,13 +30,11 @@ func action(cell):
 						if damage >= 5:
 							obstacle.cur_health -= damage - 5;
 							game.selected_player = null;
-							return;
 				
 			for character in characters:
 				if character.cur_cell == cell:
 					character.cur_health -= damage;
 					game.selected_player = null;
-					return;
 					
 			game.selected_player = null;
 

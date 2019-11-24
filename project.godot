@@ -18,6 +18,15 @@ _global_script_class_icons={
 config/name="3D Game"
 run/main_scene="res://Scenes/Game.tscn"
 
+[display]
+
+window/size/width=1600
+window/size/height=900
+window/size/test_width=1600
+window/size/test_height=900
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [input]
 
 forward={
@@ -88,4 +97,5 @@ zoom_out={
 
 [rendering]
 
+quality/filters/anisotropic_filter_level=1
 environment/default_environment="res://default_env.tres"

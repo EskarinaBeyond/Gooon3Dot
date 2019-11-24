@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var camera = $Camera_Anchor/Camera;
+onready var camera = $Camera_Anchor/Camera_A;
 onready var ingame = $Ingame
 onready var grid = $Ingame/Grid
 onready var characters = $Ingame/Characters.get_children();
