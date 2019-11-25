@@ -30,7 +30,13 @@ func select_player(player):
 		action_buttons[action.get_index()].find_node("Icon").texture = action.action_icon;
 		action_buttons[action.get_index()].find_node("Label").text = action.action_name;
 	
-	pass;
+func select_action(action, player):
+	player.cur_action = action;
+	for cell in grid.get_children():
+		if cell.in_range(action.action_range):
+			cell.highlight();
+		else:
+			cell.lowlight();
 
 
 func _ready():

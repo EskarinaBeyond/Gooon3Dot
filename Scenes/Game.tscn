@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Selection_Arrow.tscn" type="PackedScene" id=2]
@@ -16,6 +16,9 @@
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("ViewportContainer/Viewport")
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0.403922, 0.639216, 1 )
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
@@ -86,7 +89,6 @@ current = true
 script = ExtResource( 12 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
-editor/display_folded = true
 margin_right = 240.0
 margin_bottom = 160.0
 
@@ -105,7 +107,6 @@ current = true
 script = ExtResource( 12 )
 
 [node name="UI" type="Control" parent="."]
-editor/display_folded = true
 margin_top = 650.0
 margin_right = 600.0
 margin_bottom = 800.0
@@ -120,7 +121,6 @@ expand = true
 stretch_mode = 1
 
 [node name="Action_Buttons" type="GridContainer" parent="UI"]
-editor/display_folded = true
 margin_top = 100.0
 margin_right = 612.0
 margin_bottom = 250.0
@@ -132,6 +132,8 @@ editor/display_folded = true
 margin_right = 150.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
+custom_styles/pressed = SubResource( 2 )
+toggle_mode = true
 script = ExtResource( 13 )
 
 [node name="Icon" type="TextureRect" parent="UI/Action_Buttons/Action_Button_1"]
@@ -151,10 +153,13 @@ align = 1
 valign = 1
 
 [node name="Action_Button_2" type="Button" parent="UI/Action_Buttons"]
+editor/display_folded = true
 margin_left = 154.0
 margin_right = 304.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
+custom_styles/pressed = SubResource( 2 )
+toggle_mode = true
 script = ExtResource( 13 )
 
 [node name="Icon" type="TextureRect" parent="UI/Action_Buttons/Action_Button_2"]
@@ -179,6 +184,8 @@ margin_left = 308.0
 margin_right = 458.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
+custom_styles/pressed = SubResource( 2 )
+toggle_mode = true
 script = ExtResource( 13 )
 
 [node name="Icon" type="TextureRect" parent="UI/Action_Buttons/Action_Button_3"]
@@ -203,6 +210,8 @@ margin_left = 462.0
 margin_right = 612.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 150, 150 )
+custom_styles/pressed = SubResource( 2 )
+toggle_mode = true
 script = ExtResource( 13 )
 
 [node name="Icon" type="TextureRect" parent="UI/Action_Buttons/Action_Button_4"]
