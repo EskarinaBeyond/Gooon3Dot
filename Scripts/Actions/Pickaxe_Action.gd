@@ -27,14 +27,11 @@ func action(cell):
 				
 				for obstacle in obstacles:
 					if obstacle.cur_cell == cell:
-						if damage >= 5:
-							obstacle.cur_health -= damage - 5;
-							game.selected_player = null;
+						obstacle.cur_health -= 2 * damage;
 				
 			for character in characters:
 				if character.cur_cell == cell:
-					character.cur_health -= damage;
-					game.selected_player = null;
+					character.cur_health -= round(damage / 2);
 					
 			if game.selection_arrow != null:
 				game.select_player(owner_char);

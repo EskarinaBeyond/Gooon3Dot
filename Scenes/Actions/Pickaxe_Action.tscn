@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Actions/Pickaxe_Action.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Pickaxe_Icons.png" type="Texture" id=2]
+
+[node name="Pickaxe_Action" type="Spatial"]
+script = ExtResource( 1 )
+action_name = "Pickaxe"
+action_icon = ExtResource( 2 )
+damage = 2

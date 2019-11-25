@@ -30,9 +30,11 @@ func action(cell):
 						return;
 						
 			owner_char.cur_cell = cell;
-			owner_char.translation = cell.translation ;
-			game.selected_player = null;
-			print_debug("got here");
+			owner_char.translation = cell.translation;
+			
+			if game.selection_arrow != null:
+				game.select_player(owner_char);
+			owner_char.cur_action = null;
 
 			for cell in game.find_node("Grid").get_children():
 				if cell.highlighted:

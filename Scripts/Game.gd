@@ -1,12 +1,12 @@
 extends Spatial
 
 onready var camera = $Camera_Anchor/Camera_A;
+onready var selection_arrow = find_node("Selection_Arrow");
 onready var ingame = $Ingame
 onready var grid = $Ingame/Grid
 onready var characters = $Ingame/Characters.get_children();
 onready var obstacles = $Ingame/Obstacles.get_children();
 onready var selected_player = null;
-onready var selection_arrow = $Ingame/Selection_Arrow;
 onready var cell_selector = $Ingame/Cell_Selector;
 onready var ui = $UI;
 onready var action_buttons = $UI/Action_Buttons.get_children();
@@ -21,6 +21,10 @@ func select_player(player):
 	
 	selection_arrow.visible = true;
 	selection_arrow.translation = selected_player.translation + 3 * selected_player.entity_offset;
+	
+	for button in action_buttons:
+		button.find_node("Icon").texture = null;
+		button.find_node("Label").text = "";
 	
 	for action in player.actions:
 		action_buttons[action.get_index()].find_node("Icon").texture = action.action_icon;
@@ -38,14 +42,29 @@ func _process(delta):
 	characters = get_node("Ingame/Characters").get_children();
 	obstacles = get_node("Ingame/Obstacles").get_children();
 	
+	if Input.is_action_just_pressed("right_click"):
+		if selected_player != null:
+			if selected_player.cur_action != null:
+				
+				for cell in grid.get_children():
+					if cell.in_range(selected_player.cur_action.action_range) and cell.highlighted:
+						cell.lowlight();
+						
+				selected_player.cur_action = null;
+			else:
+				selected_player = null;
+	
 	if selected_player != null:
 		
-		for cell in grid.get_children():
-			if cell.in_range(selected_player.cur_action.action_range) and !cell.highlighted:
-				cell.highlight();
-				
-			if !cell.in_range(selected_player.cur_action.action_range) and cell.highlighted:
-				cell.lowlight();
+		if selected_player.cur_action != null:
+		
+			for cell in grid.get_children():
+				if cell.in_range(selected_player.cur_action.action_range) and !cell.highlighted:
+					cell.highlight();
+					
+#				if !cell.in_range(selected_player.cur_action.action_range) and cell.highlighted:
+#					cell.lowlight();
+			
 				
 	else:
 		selection_arrow.visible = false;
@@ -53,7 +72,6 @@ func _process(delta):
 		for button in action_buttons:
 			button.find_node("Icon").texture = null;
 			button.find_node("Label").text = "";
-	pass;
 	
 	if moused_cell != null:
 		cell_selector.visible = true;

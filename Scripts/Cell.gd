@@ -42,11 +42,13 @@ func _on_StaticBody_mouse_entered():
 	
 func _on_StaticBody_mouse_exited():
 	game.moused_cell = null;
-	if game.selected_player == null :
-		lowlight();
-	else: 
+	if game.selected_player != null and game.selected_player.cur_action != null:
 		if !in_range(game.selected_player.cur_action.action_range):
 			lowlight();
+	else:
+		lowlight();
+
+	pass;
 	
 
 
@@ -59,17 +61,17 @@ func _on_StaticBody_input_event(camera, event, click_position, click_normal, sha
 		selected = !selected
 		game.selected_cell = self;
 		
-		if game.selected_player != null:
+		for player in characters: #code for selecting players
+			if player.cur_cell == self and (game.selected_player == null):
+				game.select_player(player);
+				selection_arrow.translation = game.selected_player.translation + 3 * game.selected_player.entity_offset;
+				
+				for cell in get_parent().get_children():
+					if cell.highlighted:
+						cell.lowlight();
+		
+		if game.selected_player != null and game.selected_player.cur_action != null:
 			game.selected_player.cur_action.action(self);
-		else:
-			for player in characters: #code for selecting players
-				if player.cur_cell == self:
-					game.select_player(player);
-					selection_arrow.translation = game.selected_player.translation + 3 * game.selected_player.entity_offset;
-					
-					for cell in get_parent().get_children():
-						if cell.highlighted:
-							cell.lowlight();
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

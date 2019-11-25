@@ -27,6 +27,7 @@ func _ready():
 	game.selected_player = self;
 	cur_action.action(grid.gridarray[starting_cell.x][starting_cell.y]);
 	game.selected_player = null;
+	cur_action = null;
 	pass;
 
 func _process(delta):
