@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Models/Barricade.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/Shaders_Textures/Barricade_Shader_Material.tres" type="Material" id=3]
+[ext_resource path="res://Scenes/Actions/Move_Action.tscn" type="PackedScene" id=4]
+
+[node name="Barricade" type="Spatial"]
+script = ExtResource( 1 )
+entity_offset = Vector3( 0.8, 1.5, 0 )
+starting_cell = Vector2( 6, 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2, 0 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="Actions" type="Spatial" parent="."]
+
+[node name="Move_Action" parent="Actions" instance=ExtResource( 4 )]

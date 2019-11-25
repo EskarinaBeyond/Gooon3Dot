@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Entity.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/Player_Placeholder.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://Assets/Shaders_Textures/grid_cell_shader.tres" type="Material" id=3]
+[ext_resource path="res://Assets/Shaders_Textures/Player_Shader_Material.tres" type="Material" id=3]
 [ext_resource path="res://Scenes/Actions/Move_Action.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Sprites/Move_Icon.png" type="Texture" id=5]
 
