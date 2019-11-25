@@ -1,8 +1,11 @@
-[gd_resource type="SpatialMaterial" format=2]
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Shaders_Textures/outline_shader.tres" type="Material" id=1]
 
 [resource]
 render_priority = -1
+next_pass = ExtResource( 1 )
 params_line_width = 128.0
 params_point_size = 128.0
-albedo_color = Color( 0.415686, 1, 0.807843, 1 )
+albedo_color = Color( 0, 0, 0, 1 )
 roughness = 0.0
