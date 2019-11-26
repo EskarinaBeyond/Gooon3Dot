@@ -5,7 +5,7 @@
 [resource]
 render_priority = -1
 next_pass = ExtResource( 1 )
+flags_unshaded = true
 params_line_width = 128.0
 params_point_size = 128.0
 albedo_color = Color( 0, 0, 0, 1 )
-roughness = 0.0
