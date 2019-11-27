@@ -40,6 +40,10 @@ func action(cell):
 			for cell in game.find_node("Grid").get_children():
 				if cell.highlighted:
 					cell.lowlight();
+			
+			for button in game.find_node("Action_Buttons").get_children():
+				button.pressed = false;
+	
 
 func _ready():
 	pass
