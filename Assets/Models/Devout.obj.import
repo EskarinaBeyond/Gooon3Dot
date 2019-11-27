@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Devout.obj-b982362fd234ea7f2ee3f0780f1e4cfd.mesh"
+
+[deps]
+
+files=[ "res://.import/Devout.obj-b982362fd234ea7f2ee3f0780f1e4cfd.mesh" ]
+
+source_file="res://Assets/Models/Devout.obj"
+dest_files=[ "res://.import/Devout.obj-b982362fd234ea7f2ee3f0780f1e4cfd.mesh", "res://.import/Devout.obj-b982362fd234ea7f2ee3f0780f1e4cfd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
