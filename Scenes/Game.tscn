@@ -69,7 +69,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0 )
 starting_cell = Vector2( 4, 2 )
 
 [node name="Characters" type="Spatial" parent="Ingame"]
-editor/display_folded = true
 
 [node name="Player" parent="Ingame/Characters" instance=ExtResource( 6 )]
 
