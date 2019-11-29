@@ -34,6 +34,7 @@ func action(cell):
 			
 			if game.selection_arrow != null:
 				game.select_player(owner_char);
+				
 			owner_char.cur_action = null;
 
 			for cell in game.find_node("Grid").get_children():

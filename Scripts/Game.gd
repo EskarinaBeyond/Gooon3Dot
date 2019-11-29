@@ -20,7 +20,7 @@ func select_player(player):
 	selected_player = player;
 	
 	selection_arrow.visible = true;
-	selection_arrow.translation = selected_player.translation + 3 * selected_player.entity_offset;
+	selection_arrow.translation = selected_player.translation + Vector3(0, 5, 0);
 	
 	for button in action_buttons:
 		button.find_node("Icon").texture = null;
@@ -68,8 +68,7 @@ func _process(delta):
 				if cell.in_range(selected_player.cur_action.action_range) and !cell.highlighted:
 					cell.highlight();
 					
-#				if !cell.in_range(selected_player.cur_action.action_range) and cell.highlighted:
-#					cell.lowlight();
+
 			
 				
 	else:
