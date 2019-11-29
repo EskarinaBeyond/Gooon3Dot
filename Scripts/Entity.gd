@@ -25,6 +25,7 @@ func die():
 func _ready():
 	cur_action = actions[0];
 	game.selected_player = self;
+	game.find_node("Selection_Arrow").translation = self.translation + Vector3(0, 5, 0);
 	cur_action.action(grid.gridarray[starting_cell.x][starting_cell.y]);
 	game.selected_player = null;
 	cur_action = null;

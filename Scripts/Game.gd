@@ -1,11 +1,14 @@
 extends Spatial
 
 onready var camera = $Camera_Anchor/Camera_A;
-onready var selection_arrow = find_node("Selection_Arrow");
+onready var selection_arrow = $Ingame/Selection_Arrow;
 onready var ingame = $Ingame
 onready var grid = $Ingame/Grid
+
 onready var characters = $Ingame/Characters.get_children();
 onready var obstacles = $Ingame/Obstacles.get_children();
+onready var enemies = $Ingame/Enemies.get_children();
+
 onready var selected_player = null;
 onready var cell_selector = $Ingame/Cell_Selector;
 onready var ui = $UI;
@@ -19,8 +22,10 @@ var moused_cell
 func select_player(player):
 	selected_player = player;
 	
+	selection_arrow = find_node("Selection_Arrow");
+	print_debug(selection_arrow);
 	selection_arrow.visible = true;
-	selection_arrow.translation = selected_player.translation + Vector3(0, 5, 0);
+	selection_arrow.translation = player.translation + Vector3(0, 5, 0);
 	
 	for button in action_buttons:
 		button.find_node("Icon").texture = null;
@@ -47,6 +52,7 @@ func _process(delta):
 	
 	characters = get_node("Ingame/Characters").get_children();
 	obstacles = get_node("Ingame/Obstacles").get_children();
+	enemies = get_node("Ingame/Enemies").get_children();
 	
 	if Input.is_action_just_pressed("right_click"):
 		if selected_player != null:

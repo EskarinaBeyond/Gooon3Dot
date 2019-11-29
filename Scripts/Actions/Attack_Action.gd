@@ -4,6 +4,7 @@ onready var game = find_parent("Game");
 onready var owner_char = get_parent().get_parent();
 onready var characters = game.find_node("Characters").get_children();
 onready var obstacles = game.find_node("Obstacles").get_children();
+onready var enemies = game.find_node("Enemies").get_children();
 
 export(String) var action_name = "Attack"
 export(Image) var action_icon = null;
@@ -30,6 +31,12 @@ func action(cell):
 						if damage >= 5:
 							obstacle.cur_health -= damage - 5;
 							game.selected_player = null;
+			
+			if enemies.size() > 0:
+				
+				for enemy in enemies:
+					if enemy.cur_cell == cell:
+						enemy.cur_health -= damage;
 				
 			for character in characters:
 				if character.cur_cell == cell:
@@ -53,5 +60,6 @@ func _ready():
 func _process(delta):
 	characters = game.characters;
 	obstacles = game.obstacles;
+	enemies = game.enemies;
 
 
