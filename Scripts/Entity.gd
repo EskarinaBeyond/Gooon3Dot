@@ -3,20 +3,28 @@ extends Spatial
 export(bool) var highlighted
 export(Vector3) var entity_offset = Vector3(0, 1.5, 0);
 export(Vector2) var starting_cell = Vector2(1, 1);
-export(int) var max_health = 3;
-
-
-var cur_cell
-var cur_action
 
 onready var game = find_parent("Game");
 onready var grid = game.find_node("Grid");
 onready var actions = $Actions.get_children();
 
-onready var cur_health = max_health;
 
 onready var animplayer = $AnimationPlayer
 onready var mesh = $MeshInstance
+
+var cur_cell
+var cur_action
+
+export(int) var max_health = 3;
+onready var cur_health = max_health;
+
+export(int) var max_ap = 3;
+onready var cur_ap = max_ap;
+
+export(int) var init = 3
+
+
+
 
 
 func die():

@@ -1,6 +1,5 @@
 extends Spatial
 
-onready var camera = $Camera_Anchor/Camera_A;
 onready var selection_arrow = $Ingame/Selection_Arrow;
 onready var ingame = $Ingame
 onready var grid = $Ingame/Grid
@@ -13,17 +12,63 @@ onready var selected_player = null;
 onready var cell_selector = $Ingame/Cell_Selector;
 onready var ui = $UI;
 onready var action_buttons = $UI/Action_Buttons.get_children();
+onready var turn_order_ui = $UI/Turn_Order
 
 var selected_cell
 
 var moused_cell
+
+var turn_order = []
+
+func _on_Button_pressed():
+	calculate_turn_order();
+
+func calculate_turn_order():
+	
+	turn_order.clear();
+	
+	var temp_order = []#creates a temporary array off all player characters and enemies, that will be sorted in the next step
+	
+	for character in characters:
+		temp_order.append(character);
+		
+	for enemy in enemies:
+		temp_order.append(enemy);
+		
+	while temp_order.size() > 0:#checks for the entity with the highest initiative inside the temp array. that entity will then be appended to the actual turn order
+		
+		var fastest = temp_order[0];
+		
+		for character in temp_order:
+			if character.init > fastest.init:
+				fastest = character;
+				
+		turn_order.append(fastest);
+		temp_order.erase(fastest);
+	
+#	for item in turn_order:
+#		if item == null:
+#			print_debug("Null")
+#		else:
+#			print_debug(item.name);
+	
+	if turn_order_ui.get_child_count() > 0:
+		for label in turn_order_ui.get_children():
+			label.queue_free();
+	
+	
+	for item in turn_order:
+		var label
+		label = preload("res://Scenes/Turn_Order_Label.tscn").instance();
+		label.text = item.name;
+		turn_order_ui.add_child(label, true)
+		
 
 
 func select_player(player):
 	selected_player = player;
 	
 	selection_arrow = find_node("Selection_Arrow");
-	print_debug(selection_arrow);
 	selection_arrow.visible = true;
 	selection_arrow.translation = player.translation + Vector3(0, 5, 0);
 	
@@ -89,7 +134,3 @@ func _process(delta):
 		cell_selector.translation = moused_cell.translation + moused_cell.mesh.translation;
 	else:
 		cell_selector.visible = false;
-	
-	
-	
-
