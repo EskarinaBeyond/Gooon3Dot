@@ -22,6 +22,67 @@ var turn_order = []
 
 func _on_Button_pressed():
 	calculate_turn_order();
+	in_range_new(characters[0].cur_cell, enemies[0].cur_cell, 5, 0);
+
+func in_range_new(or_cell, go_cell, char_range, range_type): 
+	#rangetype 0: moving, cant go over obstacles, but through other characters
+	#rangetype 1: attack, cant go through obstacles, or other characters
+	#rangetype 2: flying goes over obstacles and other characters
+	
+	if range_type == 0:
+		
+		var temp_grid = []
+		
+		
+		for x in range(2 * char_range + 1):
+			temp_grid.append([])
+			temp_grid[x].resize(2 * char_range + 1)
+
+			for y in range(2 * char_range + 1):
+				temp_grid[x][y] = 0;
+		
+		var grid_center = Vector2(char_range, char_range);
+		temp_grid[grid_center.x][grid_center.y] = 9;
+		
+		for obstacle in obstacles:
+			if abs(obstacle.cur_cell.grid_pos.x - or_cell.grid_pos.x) + abs(obstacle.cur_cell.grid_pos.y - or_cell.grid_pos.y) < char_range + 1:
+				temp_grid[char_range + obstacle.cur_cell.grid_pos.x - or_cell.grid_pos.x][char_range + obstacle.cur_cell.grid_pos.y - or_cell.grid_pos.y] = 2;
+		
+		for line in temp_grid.size():
+			print(temp_grid[line]);
+		
+		for step in char_range:
+			
+			
+			for x in 2 * char_range + 1:
+				for y in 2 * char_range + 1:
+					if temp_grid[x][y] == 1 or temp_grid[x][y] == 8:
+						
+						if x != 2 * char_range:
+							if temp_grid[x + 1][y] != 2:
+								temp_grid[x + 1][y] = 9;
+						
+						if x != 0:
+							if temp_grid[x - 1][y] != 2:
+								temp_grid[x - 1][y] = 9;
+						
+						if y != 2 * char_range:
+							if temp_grid[x][y + 1] != 2:
+								temp_grid[x][y + 1] = 9;
+						
+						if y != 0: 
+							if temp_grid[x][y - 1] != 2:
+								temp_grid[x][y - 1] = 9;
+								
+			for x in 2 * char_range + 1:
+				for y in 2 * char_range + 1:
+					if temp_grid[x][y] == 9:
+						temp_grid[x][y] = 1;
+								
+			print("--------Step " + str(step) + "--------");
+			for line in temp_grid.size():
+				print(temp_grid[line]);
+		
 
 func calculate_turn_order():
 	
@@ -65,7 +126,7 @@ func calculate_turn_order():
 		
 
 
-func select_player(player):
+func select_entity(player):
 	selected_player = player;
 	
 	selection_arrow = find_node("Selection_Arrow");
@@ -81,6 +142,7 @@ func select_player(player):
 		action_buttons[action.get_index()].find_node("Label").text = action.action_name;
 	
 func select_action(action, player):
+	
 	player.cur_action = action;
 	for cell in grid.get_children():
 		if cell.in_range(action.action_range):
@@ -90,8 +152,7 @@ func select_action(action, player):
 
 
 func _ready():
-	pass;
-	
+	calculate_turn_order();
 
 func _process(delta):
 	
@@ -108,8 +169,6 @@ func _process(delta):
 						cell.lowlight();
 						
 				selected_player.cur_action = null;
-			else:
-				selected_player = null;
 	
 	if selected_player != null:
 		
