@@ -17,7 +17,7 @@ var highlighted = false
 #Function that checks wether or not another cell is reachable within 
 #a given amount of steps
 func in_range(char_range): 
-
+	
 	if game.selected_player.cur_cell == null:
 		return(true);
 	if abs(game.selected_player.cur_cell.grid_pos.x - grid_pos.x) + abs(game.selected_player.cur_cell.grid_pos.y - grid_pos.y) < char_range + 1:
@@ -63,7 +63,7 @@ func _on_StaticBody_input_event(camera, event, click_position, click_normal, sha
 		
 		for player in characters: #code for selecting players
 			if player.cur_cell == self and (game.selected_player == null):
-				game.select_player(player);
+				game.select_entity(player);
 				selection_arrow.translation = game.selected_player.translation + 3 * game.selected_player.entity_offset;
 				
 				for cell in get_parent().get_children():

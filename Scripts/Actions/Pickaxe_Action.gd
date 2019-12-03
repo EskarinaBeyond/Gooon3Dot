@@ -8,20 +8,16 @@ onready var obstacles = game.find_node("Obstacles").get_children();
 export(String) var action_name = "Attack"
 export(Image) var action_icon = null;
 
-export(int) var max_action_charges = 1;
 export(int) var action_range = 1;
+export(int) var range_type = 1;
 export(int) var damage = 1;
-
-
-
-
-var action_charges = max_action_charges;
+export(int) var ap_cost = 1;
 
 func action(cell):
 
 	if game.selected_player != null:
 		
-		if game.selected_player.cur_cell != cell and cell.in_range(action_range):
+		if game.selected_player.cur_cell != cell and cell.in_range(owner_char.curcell, action_range, 1):
 			
 			if obstacles.size() > 0:
 				
@@ -34,7 +30,7 @@ func action(cell):
 					character.cur_health -= round(damage / 2);
 					
 			if game.selection_arrow != null:
-				game.select_player(owner_char);
+				game.select_entity(owner_char);
 			owner_char.cur_action = null;
 
 			for cell in game.find_node("Grid").get_children():

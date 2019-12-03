@@ -7,11 +7,11 @@ onready var obstacles = game.find_node("Obstacles").get_children();
 
 export(String) var action_name = "Move"
 
-export(int) var max_action_charges = 1;
 export(int) var action_range = 2;
-export(Image) var action_icon = null;
+export(int) var range_type = 0
+export(int) var ap_cost = 1;
 
-var action_charges = max_action_charges;
+export(Image) var action_icon = null;
 
 func action(cell):
 
@@ -33,7 +33,7 @@ func action(cell):
 			owner_char.translation = cell.translation;
 			
 			if game.selection_arrow != null:
-				game.select_player(owner_char);
+				game.select_entity(owner_char);
 				
 			owner_char.cur_action = null;
 
