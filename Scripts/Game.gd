@@ -29,9 +29,10 @@ func in_range_new(or_cell, go_cell, char_range, range_type):
 	#rangetype 1: attack, cant go through obstacles, or other characters
 	#rangetype 2: flying goes over obstacles and other characters
 	
+	var temp_grid = []
+	var return_array = []
+	
 	if range_type == 0:
-		
-		var temp_grid = []
 		
 		
 		for x in range(2 * char_range + 1):
@@ -78,11 +79,18 @@ func in_range_new(or_cell, go_cell, char_range, range_type):
 				for y in 2 * char_range + 1:
 					if temp_grid[x][y] == 9:
 						temp_grid[x][y] = 1;
-								
-			print("--------Step " + str(step) + "--------");
-			for line in temp_grid.size():
-				print(temp_grid[line]);
+						
+#			print("--------Step " + str(step) + "--------");
+#			for line in temp_grid.size():
+#				print(temp_grid[line]);
 		
+	for x in 2 * char_range + 1:
+		for y in 2 * char_range + 1:
+			if temp_grid[x][y] == 1:
+				return_array.append(Vector2(or_cell.grid_pos.x - char_range + x, or_cell.grid_pos.y - char_range + y));
+	
+	print(return_array)
+	return(return_array);
 
 func calculate_turn_order():
 	
