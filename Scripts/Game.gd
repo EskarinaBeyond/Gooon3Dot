@@ -22,15 +22,16 @@ var turn_order = []
 
 func _on_Button_pressed():
 	calculate_turn_order();
-	in_range_new(characters[0].cur_cell, enemies[0].cur_cell, 5, 0);
+	in_range_new(characters[0].cur_cell, 5, 0);
 
-func in_range_new(or_cell, go_cell, char_range, range_type): 
+func in_range_new(or_cell, char_range, range_type): 
 	#rangetype 0: moving, cant go over obstacles, but through other characters
 	#rangetype 1: attack, cant go through obstacles, or other characters
 	#rangetype 2: flying goes over obstacles and other characters
 	
 	var temp_grid = []
 	var return_array = []
+	char_range += 1;
 	
 	if range_type == 0:
 		
@@ -88,6 +89,10 @@ func in_range_new(or_cell, go_cell, char_range, range_type):
 		for y in 2 * char_range + 1:
 			if temp_grid[x][y] == 1:
 				return_array.append(Vector2(or_cell.grid_pos.x - char_range + x, or_cell.grid_pos.y - char_range + y));
+	
+	for x in return_array.size():
+		if return_array[x].x >= 9 or return_array[x].y >= 9:
+			return_array[x] = Vector2(0, 0);
 	
 	print(return_array)
 	return(return_array);
@@ -151,12 +156,14 @@ func select_entity(player):
 	
 func select_action(action, player):
 	
-	player.cur_action = action;
 	for cell in grid.get_children():
-		if cell.in_range(action.action_range):
-			cell.highlight();
-		else:
+		if cell.highlighted:
 			cell.lowlight();
+	
+	player.cur_action = action;
+	for pos in in_range_new(player.cur_cell, action.action_range, 0):
+		grid.gridarray[pos.x][pos.y].highlight();
+		pass;
 
 
 func _ready():
@@ -173,7 +180,7 @@ func _process(delta):
 			if selected_player.cur_action != null:
 				
 				for cell in grid.get_children():
-					if cell.in_range(selected_player.cur_action.action_range) and cell.highlighted:
+					if cell.highlighted:
 						cell.lowlight();
 						
 				selected_player.cur_action = null;
@@ -181,10 +188,10 @@ func _process(delta):
 	if selected_player != null:
 		
 		if selected_player.cur_action != null:
-		
-			for cell in grid.get_children():
-				if cell.in_range(selected_player.cur_action.action_range) and !cell.highlighted:
-					cell.highlight();
+			pass;
+#			for cell in grid.get_children():
+#				if cell.in_range(selected_player.cur_action.action_range) and !cell.highlighted:
+#					cell.highlight();
 					
 
 			
