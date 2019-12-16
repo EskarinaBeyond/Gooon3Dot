@@ -39,12 +39,12 @@ func lowlight():
 func _on_StaticBody_mouse_entered():
 	game.moused_cell = self;
 	highlight();
+	game.get_node("UI/Debug_button").text = "X: " + str(grid_pos.x) + " " + "Y: " + str(grid_pos.y);
 	
 func _on_StaticBody_mouse_exited():
 	game.moused_cell = null;
-	if game.selected_player != null and game.selected_player.cur_action != null:
-		if !in_range(game.selected_player.cur_action.action_range):
-			lowlight();
+	if game.selected_player != null and game.selected_player.cur_action != null:	
+		lowlight();
 	else:
 		lowlight();
 
@@ -62,7 +62,7 @@ func _on_StaticBody_input_event(camera, event, click_position, click_normal, sha
 		game.selected_cell = self;
 		
 		for player in characters: #code for selecting players
-			if player.cur_cell == self and (game.selected_player == null):
+			if player.cur_cell == self:
 				game.select_entity(player);
 				selection_arrow.translation = game.selected_player.translation + 3 * game.selected_player.entity_offset;
 				

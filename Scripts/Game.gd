@@ -22,7 +22,25 @@ var turn_order = []
 
 func _on_Button_pressed():
 	calculate_turn_order();
-	in_range_new(characters[0].cur_cell, 5, 0);
+	#in_range_new(characters[0].cur_cell, 5, 0);
+
+func erase_from_2d_array_if_higher(array, max_num): #erases all entries from an 2d array, which are larger than the argument
+	for x in array.size():
+		if array[x].x >= max_num or array[x].y >= max_num:
+			array.erase(array[x])
+			erase_from_2d_array_if_higher(array, max_num)
+			#print(array)
+			break
+	return(array)
+
+func erase_from_2d_array_if_lower(array, min_num): #erases all entries from an 2d array, which are larger than the argument
+	for x in array.size():
+		if array[x].x < min_num or array[x].y < min_num:
+			array.erase(array[x])
+			erase_from_2d_array_if_lower(array, min_num)
+			#print(array)
+			break
+	return(array)
 
 func in_range_new(or_cell, char_range, range_type): 
 	#rangetype 0: moving, cant go over obstacles, but through other characters
@@ -47,7 +65,7 @@ func in_range_new(or_cell, char_range, range_type):
 		temp_grid[grid_center.x][grid_center.y] = 9;
 		
 		for obstacle in obstacles:
-			if abs(obstacle.cur_cell.grid_pos.x - or_cell.grid_pos.x) + abs(obstacle.cur_cell.grid_pos.y - or_cell.grid_pos.y) < char_range + 1:
+			if abs(obstacle.cur_cell.grid_pos.x - or_cell.grid_pos.x) + abs(obstacle.cur_cell.grid_pos.y - or_cell.grid_pos.y) <= char_range:
 				temp_grid[char_range + obstacle.cur_cell.grid_pos.x - or_cell.grid_pos.x][char_range + obstacle.cur_cell.grid_pos.y - or_cell.grid_pos.y] = 2;
 		
 		for line in temp_grid.size():
@@ -58,41 +76,40 @@ func in_range_new(or_cell, char_range, range_type):
 			
 			for x in 2 * char_range + 1:
 				for y in 2 * char_range + 1:
-					if temp_grid[x][y] == 1 or temp_grid[x][y] == 8:
+					if temp_grid[x][y] == 1:
 						
-						if x != 2 * char_range:
-							if temp_grid[x + 1][y] != 2:
-								temp_grid[x + 1][y] = 9;
-						
-						if x != 0:
-							if temp_grid[x - 1][y] != 2:
-								temp_grid[x - 1][y] = 9;
-						
-						if y != 2 * char_range:
+						if y != 2 * char_range + 1:
 							if temp_grid[x][y + 1] != 2:
 								temp_grid[x][y + 1] = 9;
 						
 						if y != 0: 
 							if temp_grid[x][y - 1] != 2:
 								temp_grid[x][y - 1] = 9;
+						
+						if x != 2 * char_range + 1:
+							if temp_grid[x + 1][y] != 2:
+								temp_grid[x + 1][y] = 9;
+						
+						if x != 0:
+							if temp_grid[x - 1][y] != 2:
+								temp_grid[x - 1][y] = 9;
 								
 			for x in 2 * char_range + 1:
 				for y in 2 * char_range + 1:
 					if temp_grid[x][y] == 9:
 						temp_grid[x][y] = 1;
 						
-#			print("--------Step " + str(step) + "--------");
-#			for line in temp_grid.size():
-#				print(temp_grid[line]);
+			print("--------Step " + str(step) + "--------");
+			for line in temp_grid.size():
+				print(temp_grid[line]);
 		
 	for x in 2 * char_range + 1:
 		for y in 2 * char_range + 1:
 			if temp_grid[x][y] == 1:
 				return_array.append(Vector2(or_cell.grid_pos.x - char_range + x, or_cell.grid_pos.y - char_range + y));
 	
-	for x in return_array.size():
-		if return_array[x].x >= 9 or return_array[x].y >= 9:
-			return_array[x] = Vector2(0, 0);
+	return_array = erase_from_2d_array_if_higher(return_array, grid.gridxsize)
+	return_array = erase_from_2d_array_if_lower(return_array, 0)
 	
 	print(return_array)
 	return(return_array);
