@@ -14,6 +14,13 @@ var selected = false
 var highlighted = false
 
 
+func is_in_array(value, array):
+	
+	for x in array:
+		if x == value:
+			return(true)
+	return(false)
+
 #Function that checks wether or not another cell is reachable within 
 #a given amount of steps
 func in_range(char_range): 
@@ -43,11 +50,14 @@ func _on_StaticBody_mouse_entered():
 	
 func _on_StaticBody_mouse_exited():
 	game.moused_cell = null;
-	if game.selected_player != null and game.selected_player.cur_action != null:	
-		lowlight();
+	
+	if game.selected_player == null or game.selected_player.cur_action == null:
+		lowlight()
 	else:
-		lowlight();
+		if !is_in_array(grid_pos, game.selected_player.reachable):
+			lowlight()
 
+	
 	pass;
 	
 

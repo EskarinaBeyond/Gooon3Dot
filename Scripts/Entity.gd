@@ -14,6 +14,7 @@ onready var mesh = $MeshInstance
 
 var cur_cell
 var cur_action
+var reachable
 
 export(int) var max_health = 3;
 onready var cur_health = max_health;
@@ -31,9 +32,12 @@ func die():
 	self.queue_free();
 
 func _ready():
-	cur_action = actions[0];
-	game.selected_player = self;
+	cur_cell = grid.gridarray[starting_cell.x][starting_cell.y]
+	#cur_action = actions[0];
+	#game.selected_player = self;
 	game.find_node("Selection_Arrow").translation = self.translation + Vector3(0, 5, 0);
+	game.select_entity(self);
+	game.select_action(actions[0], self)
 	cur_action.action(grid.gridarray[starting_cell.x][starting_cell.y]);
 	game.selected_player = null;
 	cur_action = null;

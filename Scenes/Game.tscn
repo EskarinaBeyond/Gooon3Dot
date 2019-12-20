@@ -71,7 +71,7 @@ entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 3, 4 )
 
 [node name="Ruins3" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -9, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0, 0 )
 entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 4, 4 )
 
@@ -81,21 +81,22 @@ entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 3, 5 )
 
 [node name="Ruins5" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -9, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0, 0 )
 entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 2, 4 )
 
 [node name="Ruins6" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -9, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0 )
 entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 3, 6 )
 
 [node name="Ruins7" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -9, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0, 0 )
 entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 5, 4 )
 
 [node name="Characters" type="Spatial" parent="Ingame"]
+editor/display_folded = true
 
 [node name="Player" parent="Ingame/Characters" instance=ExtResource( 6 )]
 editor/display_folded = true
@@ -121,7 +122,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0 )
 starting_cell = Vector2( 4, 3 )
 
 [node name="Player4" parent="Ingame/Characters" instance=ExtResource( 6 )]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0 )
 starting_cell = Vector2( 4, 5 )
 
@@ -146,12 +146,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0 )
 starting_cell = Vector2( 0, 8 )
 
 [node name="Enemies" type="Spatial" parent="Ingame"]
-editor/display_folded = true
 
 [node name="Devout" parent="Ingame/Enemies" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0 )
 starting_cell = Vector2( 5, 2 )
-init = 7
 
 [node name="Camera_Anchor" type="Spatial" parent="."]
 editor/display_folded = true
@@ -332,3 +330,5 @@ margin_right = 200.0
 [editable path="Ingame/Characters/Player"]
 
 [editable path="Ingame/Characters/Player2"]
+
+[editable path="Ingame/Characters/Player4"]

@@ -17,7 +17,7 @@ func action(cell):
 
 	if game.selected_player != null:
 		
-		if game.selected_player.cur_cell != cell and cell.in_range(action_range):
+		if game.selected_player.cur_cell != cell and cell.is_in_array(cell, owner_char.reachable):
 			
 			if obstacles.size() > 0:
 				

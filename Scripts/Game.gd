@@ -47,6 +47,9 @@ func in_range_new(or_cell, char_range, range_type):
 	#rangetype 1: attack, cant go through obstacles, or other characters
 	#rangetype 2: flying goes over obstacles and other characters
 	
+	if obstacles == null:
+		obstacles = $Ingame/Obstacles.get_children()
+	
 	var temp_grid = []
 	var return_array = []
 	char_range += 1;
@@ -157,6 +160,9 @@ func calculate_turn_order():
 
 
 func select_entity(player):
+	
+	if action_buttons == null:
+		action_buttons = $UI/Action_Buttons.get_children();
 	selected_player = player;
 	
 	selection_arrow = find_node("Selection_Arrow");
@@ -172,13 +178,10 @@ func select_entity(player):
 		action_buttons[action.get_index()].find_node("Label").text = action.action_name;
 	
 func select_action(action, player):
-	
-	for cell in grid.get_children():
-		if cell.highlighted:
-			cell.lowlight();
-	
+		
 	player.cur_action = action;
-	for pos in in_range_new(player.cur_cell, action.action_range, 0):
+	player.reachable = in_range_new(player.cur_cell, action.action_range, 0)
+	for pos in player.reachable:
 		grid.gridarray[pos.x][pos.y].highlight();
 		pass;
 
