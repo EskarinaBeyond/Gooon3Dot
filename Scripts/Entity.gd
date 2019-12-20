@@ -32,15 +32,15 @@ func die():
 	self.queue_free();
 
 func _ready():
-	cur_cell = grid.gridarray[starting_cell.x][starting_cell.y]
-	#cur_action = actions[0];
-	#game.selected_player = self;
-	game.find_node("Selection_Arrow").translation = self.translation + Vector3(0, 5, 0);
-	game.select_entity(self);
-	game.select_action(actions[0], self)
-	cur_action.action(grid.gridarray[starting_cell.x][starting_cell.y]);
-	game.selected_player = null;
-	cur_action = null;
+#	cur_cell = grid.gridarray[starting_cell.x][starting_cell.y]
+#	cur_action = actions[0];
+#	game.selected_player = self;
+#	game.find_node("Selection_Arrow").translation = self.translation + Vector3(0, 5, 0);
+#	game.select_entity(self);
+#	game.select_action(actions[0], self)
+#	cur_action.action(grid.gridarray[starting_cell.x][starting_cell.y]);
+#	game.selected_player = null;
+#	cur_action = null;
 	pass;
 
 func _process(delta):

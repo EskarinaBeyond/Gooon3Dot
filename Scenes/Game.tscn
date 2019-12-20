@@ -62,37 +62,31 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0 )
 
 [node name="Ruins1" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0 )
-entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 3, 3 )
 
 [node name="Ruins2" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0 )
-entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 3, 4 )
 
 [node name="Ruins3" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0, 0 )
-entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 4, 4 )
 
 [node name="Ruins4" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0 )
-entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 3, 5 )
 
 [node name="Ruins5" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0, 0 )
-entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 2, 4 )
 
 [node name="Ruins6" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0 )
-entity_offset = Vector3( 0, 0.9, 0 )
 starting_cell = Vector2( 3, 6 )
 
 [node name="Ruins7" parent="Ingame/Obstacles" instance=ExtResource( 5 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 0, 0 )
-entity_offset = Vector3( 0, 0.9, 0 )
+entity_offset = Vector3( 0, 0.4, 0 )
 starting_cell = Vector2( 5, 4 )
 
 [node name="Characters" type="Spatial" parent="Ingame"]
@@ -146,6 +140,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0 )
 starting_cell = Vector2( 0, 8 )
 
 [node name="Enemies" type="Spatial" parent="Ingame"]
+editor/display_folded = true
 
 [node name="Devout" parent="Ingame/Enemies" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0 )

@@ -49,6 +49,7 @@ func in_range_new(or_cell, char_range, range_type):
 	
 	if obstacles == null:
 		obstacles = $Ingame/Obstacles.get_children()
+		print('did it')
 	
 	var temp_grid = []
 	var return_array = []
@@ -68,7 +69,7 @@ func in_range_new(or_cell, char_range, range_type):
 		temp_grid[grid_center.x][grid_center.y] = 9;
 		
 		for obstacle in obstacles:
-			if abs(obstacle.cur_cell.grid_pos.x - or_cell.grid_pos.x) + abs(obstacle.cur_cell.grid_pos.y - or_cell.grid_pos.y) <= char_range:
+			if abs(obstacle.cur_cell.grid_pos.x - or_cell.grid_pos.x) + abs(obstacle. cur_cell.grid_pos.y - or_cell.grid_pos.y) <= char_range:
 				temp_grid[char_range + obstacle.cur_cell.grid_pos.x - or_cell.grid_pos.x][char_range + obstacle.cur_cell.grid_pos.y - or_cell.grid_pos.y] = 2;
 		
 		for line in temp_grid.size():
@@ -188,7 +189,9 @@ func select_action(action, player):
 
 func _ready():
 	calculate_turn_order();
-
+	for obstacle in obstacles:
+		obstacle.cur_cell = grid.gridarray[obstacle.starting_cell.x][obstacle.starting_cell.y]
+		obstacle.translation = obstacle.cur_cell.translation + obstacle.entity_offset
 func _process(delta):
 	
 	characters = get_node("Ingame/Characters").get_children();
